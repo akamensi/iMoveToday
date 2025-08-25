@@ -1,0 +1,83 @@
+/* File: src/components/Footer/Footer.module.css */
+.footer {
+  background-color: #f8f9fa;
+  padding: 4rem 2rem 2rem;
+  margin-top: 4rem;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footerSection h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #343a40;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerSection ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footerSection ul li a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.footerSection ul li a:hover {
+  color: #E41B23;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.socialLinks a:hover {
+  background-color: #E41B23;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.footerSection p {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+  
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

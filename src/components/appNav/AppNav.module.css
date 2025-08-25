@@ -1,0 +1,89 @@
+/* File: src/components/AppNav/AppNav.module.css */
+.nav {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+}
+
+.navList {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+  position: relative;
+  display: block;
+}
+
+.navLink:hover {
+  color: #343a40;
+}
+
+.linkUnderline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #E41B23, #00843D);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.navLink:hover .linkUnderline {
+  width: 100%;
+}
+
+.active {
+  color: #E41B23;
+}
+
+.active .linkUnderline {
+  width: 100%;
+  background: linear-gradient(90deg, #E41B23, #00843D);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem;
+  }
+  
+  .navList {
+    gap: 1.5rem;
+  }
+  
+  .navLink {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navList {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .navItem {
+    text-align: center;
+  }
+  
+  .navLink {
+    padding: 0.8rem 0;
+  }
+}

@@ -1,0 +1,155 @@
+/* File: src/components/Header/Header.module.css */
+.header {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.navContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+.navLink {
+  color: #4a4a4a;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #E41B23, #00843D);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover {
+  color: #000000;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnLogin, .btnRegister {
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.btnLogin {
+  background: transparent;
+  color: #6c757d;
+  border-color: #e2e2e2;
+}
+
+.btnLogin:hover {
+  border-color: #000000;
+  color: #000000;
+}
+
+.btnRegister {
+  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(228, 27, 35, 0.25);
+}
+
+.btnRegister:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(228, 27, 35, 0.4);
+}
+
+.menuToggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  gap: 4px;
+}
+
+.menuToggle span {
+  width: 24px;
+  height: 2px;
+  background-color: #343a40;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Responsive design */
+@media (max-width: 968px) {
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .navOpen {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .menuToggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 576px) {
+  .authButtons {
+    display: none;
+  }
+  
+  .navContainer {
+    padding: 1rem;
+  }
+  
+  .logoText {
+    font-size: 1.4rem;
+  }
+}
