@@ -1,0 +1,21 @@
+.appHome {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: left; /* changed from center to left */
+  color: #222;
+}
+

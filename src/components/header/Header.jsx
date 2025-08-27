@@ -43,11 +43,11 @@ const Header = () => {
     navigate("/login");
   };
 
-  const navItems = useMemo(() => [
-    { label: "Schools", path: "/schools" },
-    { label: "Properties", path: "/properties" },
-    { label: "Criteria", path: "/criteria" },
-  ], []);
+const navItems = useMemo(() => [
+  { label: "Schools", path: "/app/schools" },
+  { label: "Properties", path: "/app/properties" },
+  { label: "Criteria", path: "/app/criteria" }, 
+], []);
 
   const navButtons = useMemo(() => {
     return navItems.map(item => {
@@ -87,9 +87,9 @@ const Header = () => {
       <div className={styles.topLevel}>
         <div className={styles.navContainer}>
           {/* Left: Logo */}
-          <div className={styles.left}>
-            <Logo />
-          </div>
+        <div className={styles.left} onClick={() => navigate("/app")}>
+          <Logo />
+        </div>
 
           {/* --- Center: Animated Switch --- */}
           {session && (

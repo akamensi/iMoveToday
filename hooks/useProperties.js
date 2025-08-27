@@ -13,7 +13,7 @@ const useProperties = () => {
     setLoading(true);
     try {
       const { data, error } = await supabase.from('properties').select('*');
-      console.log("Fetched all properties:", data);
+     // console.log("Fetched all properties:", data);
 
       if (error) throw error;
 

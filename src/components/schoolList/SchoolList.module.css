@@ -1,0 +1,19 @@
+.schoolsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 24px; /* space between cards */
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .schoolsGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+  }
+}
+
+@media (max-width: 640px) {
+  .schoolsGrid {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+  }
+}

@@ -34,8 +34,8 @@ const SchoolCard = ({ school }) => {
         </div>
         
         <div className={styles.actionRow}>
-          <Link to={`/school-details/${school.id}`} >
-          <button className={styles.viewButton}>View Details</button>
+          <Link to={`schools/${school.id}`}>
+            <button className={styles.viewButton}>View Details</button>
           </Link>
         </div>
       </div>

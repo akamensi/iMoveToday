@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSchoolById } from '../../services/apiSchools';
 import styles from './SchoolDetails.module.css';
-import Footer from '../../components/footer/Footer';
-import Header from '../../components/header/Header';
+import useSchools from '../../../hooks/useSchools'; 
 
 const SchoolDetails = () => {
-    const [school, setSchool] = useState(null);
-    const [loading, setLoading] = useState(false);
     const { id } = useParams();
+    console.log("useParams id:", id);
+    const {school, loading, error} = useSchools(id);
+ 
 
-    useEffect(() => { 
-        const fetchOneSchool = async () => { 
-          try { 
-            setLoading(true); 
-            const data = await getSchoolById(id); 
-            console.log("Fetched school:", data);
-            setSchool(data); 
-          } catch (err) { 
-            console.error(err.message); 
-          } finally { 
-            setLoading(false); 
-          } 
-        }; 
-        fetchOneSchool(); 
-      }, [id]);
+      console.log("School details:", JSON.stringify(school, null, 2));
+      console.log("id:", id);
+
+    
 
       const { name, location, type, curriculum, images, grades, 
               fees_range, rating, transport, canteen, contact, 
