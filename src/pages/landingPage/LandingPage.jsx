@@ -2,8 +2,6 @@
 
 
 import { useNavigate } from 'react-router';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
 import styles from './LandingPage.module.css';
 
 const LandingPage = () => {
@@ -11,7 +9,6 @@ const LandingPage = () => {
   const navigate = useNavigate()
   return (
     <div className={styles.landingPage}>
-      <Header />
       
       <main>
         {/* Hero Section */}
@@ -85,8 +82,6 @@ const LandingPage = () => {
           <button className={styles.ctaButton}>Start Your Journey</button>
         </section>
       </main>
-      
-      <Footer />
     </div>
   );
 };

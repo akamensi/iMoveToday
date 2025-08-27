@@ -1,0 +1,148 @@
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  animation: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modalContent h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.formStep {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formStep input[type="text"],
+.formStep input[type="number"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formStep input:focus {
+  outline: none;
+  border-color: #E41B23;
+  box-shadow: 0 0 0 3px rgba(228, 27, 35, 0.15);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: #495057;
+  cursor: pointer;
+}
+
+.buttonGroup {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.formButton {
+  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(228, 27, 35, 0.3);
+  flex-grow: 1;
+}
+
+.formButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(228, 27, 35, 0.4);
+}
+
+.backButton {
+  background: #6c757d;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.2);
+}
+
+.backButton:hover {
+  background: #5a6268;
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.3);
+}
+
+.addChildButton {
+  background: #00843D;
+  box-shadow: 0 4px 15px rgba(0, 132, 61, 0.2);
+  margin-bottom: 1rem;
+}
+
+.addChildButton:hover {
+  background: #007033;
+  box-shadow: 0 6px 20px rgba(0, 132, 61, 0.3);
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #6c757d;
+  transition: color 0.2s ease;
+}
+
+.closeModalButton:hover {
+  color: #343a40;
+}
+
+.childForm {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #f8f9fa;
+}

@@ -1,89 +1,182 @@
-/* File: src/components/Header/Header.module.css */
+/* ==========================================================================
+   Base Header & Layout
+   ========================================================================== */
+
 .header {
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.75); /* Semi-transparent for blur effect */
+  -webkit-backdrop-filter: blur(16px); /* Blur for Safari */
+  backdrop-filter: blur(16px); /* Standard blur property */
+  border-bottom: 1px solid transparent; /* Starts transparent, gets a color on scroll */
+  padding: 0 2rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.navContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.2rem 2rem;
+/* --- Scrolled State --- */
+/* This class is added via JS when the user scrolls down */
+.headerScrolled {
+  background-color: rgba(255, 255, 255, 0.85); /* More opaque on scroll for readability */
+  border-bottom: 1px solid rgb(235, 235, 235); /* Subtle separator line */
+}
+
+/* ==========================================================================
+   Top Level Navigation (Logo, Center Controls, Auth)
+   ========================================================================== */
+
+.topLevel {
+  height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-}
-
-
-.navLinks {
-  display: flex;
-  gap: 2rem;
-}
-
-.navLink {
-  color: #4a4a4a;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  position: relative;
-  padding: 0.5rem 0;
-  transition: all 0.3s ease;
-}
-
-.navLink::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #E41B23, #00843D);
-  transition: width 0.3s ease;
-}
-
-.navLink:hover {
-  color: #000000;
-}
-
-.navLink:hover::after {
   width: 100%;
 }
 
-.authButtons {
+.navContainer {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.btnLogin, .btnRegister {
-  padding: 0.7rem 1.5rem;
+/* --- Columns for alignment --- */
+.left, .right {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0; /* Ensures left/right columns have a base width, preventing center squish */
+}
+
+.right {
+  justify-content: flex-end; /* Aligns auth buttons to the far right */
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  /* Height is important for vertical alignment of the animated children */
+  height: 50px; 
+}
+
+/* ==========================================================================
+   Center Controls (Segmented Nav & Mini Search Bar)
+   ========================================================================== */
+
+/* --- 1. Segmented Control (Visible at Top) --- */
+.segmentedControlContainer {
+  display: flex;
+  background: #EBEBEB;
+  border-radius: 9999px;
+  padding: 5px;
+  border: 1px solid #E0E0E0;
+}
+
+.segmentButton {
+  position: relative;
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  transition: color 0.3s ease;
+  white-space: nowrap; /* Prevents text from wrapping on smaller screens */
+}
+
+.segmentButton:hover:not(.active) {
+  color: #000; /* Darkens text on hover for non-active items */
+}
+
+.segmentButton .label {
+  position: relative;
+  z-index: 1;
+}
+
+.activeBackground {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 9999px;
+  /* Refined shadow for a "lifted" feel */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.04);
+  z-index: 0;
+}
+
+.active {
+  color: #111827;
+}
+
+/* --- 2. Mini Search Bar (Visible on Scroll) --- */
+.miniSearchBar {
+  display: flex;
+  align-items: center;
+  padding: 8px 8px 8px 24px;
+  background-color: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 9999px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.miniSearchBar:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+}
+
+.miniSearchBar span {
+  padding-right: 16px; 
+}
+
+.miniSearchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+
+
+.btnNav,
+.btnRegister {
+  padding: 0.6rem 1.2rem;
   border-radius: 30px;
   font-weight: 500;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  border: none;
 }
 
-.btnLogin {
+.btnNav {
   background: transparent;
   color: #6c757d;
-  border-color: #e2e2e2;
 }
 
-.btnLogin:hover {
-  border-color: #000000;
-  color: #000000;
+.btnNav:hover {
+  color: #000;
 }
 
 .btnRegister {
-  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
-  color: white;
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  color: #fff;
   box-shadow: 0 4px 15px rgba(228, 27, 35, 0.25);
 }
 
@@ -92,64 +185,75 @@
   box-shadow: 0 6px 20px rgba(228, 27, 35, 0.4);
 }
 
-.menuToggle {
-  display: none;
+
+
+.bottomLevel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 16px;
+  overflow: hidden; 
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: auto;
+  max-width: 850px;
+}
+
+.searchSegment {
+  display: flex;
   flex-direction: column;
-  background: none;
+  padding: 0 24px;
+  border-right: 1px solid #ddd;
+  flex: 1; /* Allows segments to grow */
+}
+
+.searchSegment:last-of-type {
+  border-right: none;
+}
+
+.searchSegment span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.searchSegment input {
   border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #717171;
+}
+
+.searchSegment input::placeholder {
+  color: #717171;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e41b23, #c5171f);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  padding: 0.5rem;
-  gap: 4px;
+  margin-left: 8px;
+  transition: background 0.3s ease;
 }
 
-.menuToggle span {
-  width: 24px;
-  height: 2px;
-  background-color: #343a40;
-  transition: all 0.3s ease;
-  transform-origin: center;
-}
-
-/* Responsive design */
-@media (max-width: 968px) {
-  .navLinks {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    gap: 1.5rem;
-    text-align: center;
-  }
-  
-  .navOpen {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  
-  .menuToggle {
-    display: flex;
-  }
-}
-
-@media (max-width: 576px) {
-  .authButtons {
-    display: none;
-  }
-  
-  .navContainer {
-    padding: 1rem;
-  }
-  
-  .logoText {
-    font-size: 1.4rem;
-  }
+.searchButton:hover {
+  background: linear-gradient(135deg, #c5171f, #e41b23);
 }

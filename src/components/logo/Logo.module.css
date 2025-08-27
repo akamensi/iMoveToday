@@ -9,7 +9,11 @@
   align-items: center;
   gap: 0.75rem;
 }
-
+.logoImage {
+  height: 100px; /* adjust as needed */
+  width: auto;
+  display: block;
+}
 .logoIcon {
   display: flex;
   align-items: center;
