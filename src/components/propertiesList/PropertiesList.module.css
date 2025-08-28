@@ -1,31 +1,29 @@
-/* Grid of property cards */
 .propertiesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 24px;
   padding: 20px;
+  justify-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Filter container - centered like header segments */
 .filterContainer {
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
   gap: 16px;
   margin-bottom: 24px;
 }
 
-/* Buttons similar to header segments */
 .filterButton {
   padding: 10px 24px;
-  border-radius: 9999px; /* Pill shape */
+  border-radius: 9999px;
   border: none;
   background-color: #f3f3f3;
   color: #333;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
 }
 
 .filterButton:hover {
@@ -37,17 +35,17 @@
   color: white;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
   .propertiesGrid {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
 @media (max-width: 640px) {
   .propertiesGrid {
-    grid-template-columns: 1fr;
+    gap: 16px;
   }
-
   .filterContainer {
     flex-wrap: wrap;
     gap: 8px;

@@ -2,11 +2,13 @@
   padding: 40px 20px;
   background-color: #f9f9f9;
   min-height: 100vh;
+   position: relative;
 }
 
 .section {
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 40px;
 }
 
 
@@ -15,7 +17,75 @@
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
-  text-align: left; /* changed from center to left */
+  text-align: left;
   color: #222;
+  border-bottom: 2px solid #eee; /* Subtle separator */
+  padding-bottom: 10px;
 }
 
+/* Floating Button Styles */
+.floatingButton {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #007bff, #00c6ff); /* Gradient for modern look */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Perfect circle */
+  width: 60px;
+  height: 60px;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25); /* Deeper shadow */
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.4s ease;
+  z-index: 1000;
+}
+
+.floatingButton:hover {
+  background: linear-gradient(135deg, #0056b3, #0096c7); /* Gradient shift on hover */
+  transform: translateY(-5px) scale(1.05); /* Lift + subtle scale */
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+}
+
+.floatingButton:active {
+  transform: translateY(-2px) scale(0.97); /* Press effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating Button for Map */
+.mapFloatingButton {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.4s ease;
+  z-index: 1001; /* Above map panel */
+}
+
+.mapFloatingButton:hover {
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+  transform: translateX(-50%) translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+}
+
+.mapFloatingButton:active {
+  transform: translateX(-50%) translateY(-2px) scale(0.97);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

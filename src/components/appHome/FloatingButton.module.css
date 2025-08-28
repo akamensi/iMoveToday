@@ -1,0 +1,30 @@
+.floatingButton {
+  position: fixed; /* Stays fixed while scrolling */
+  top: 120px;      /* Distance from top, below header */
+  left: 40px;      /* Distance from left */
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Luxury gradient */
+  color: white;
+  border: none;
+  border-radius: 30px; /* Rounded pill shape */
+  padding: 16px 36px;  /* Wider button */
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: all 0.35s ease;
+  z-index: 1000; /* Always on top */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floatingButton:hover {
+  background: linear-gradient(135deg, #feb47b, #ff7e5f);
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
+.floatingButton:active {
+  transform: translateY(-2px) scale(0.97);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}

@@ -1,46 +1,36 @@
-// File: src/components/SchoolCard/SchoolCard.jsx
 import React from 'react';
 import styles from './SchoolCard.module.css';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const SchoolCard = ({ school }) => {
-  const { name, location, type, curriculum, image } = school;
-  
+  const { id, name, location, type, curriculum, images } = school;
+
   return (
     <div className={styles.schoolCard}>
-      <div className={styles.cardImage}>
-        <img 
-          src={image || '/placeholder-school.jpg'} 
-          alt={name}
-          className={styles.schoolImage}
-        />
-        <div className={styles.imageOverlay}></div>
-        <div className={styles.cardHeader}>
-          <h3 className={styles.schoolName}>{name}</h3>
+      {/* Clickable Image */}
+      <Link to={`/app/schools/${id}`} className={styles.imageLink}>
+        <div className={styles.cardImage}>
+          <img 
+            src={images && images.length > 0 ? images[0] : '/placeholder-school.jpg'} 
+            alt={name} 
+            className={styles.schoolImage} 
+          />
+          <div className={styles.imageOverlay}></div>
+          <div className={styles.cardHeader}>
+            <h3 className={styles.schoolName}>{name}</h3>
+          </div>
         </div>
-      </div>
-      
-      <div className={styles.cardDetails}>
-        <div className={styles.detailItem}>
-          <span className={styles.detailText}>City: {location}</span>
-        </div>
-        
-        <div className={styles.detailItem}>
-          <span className={styles.detailText}>Type: {type}</span>
-        </div>
-        
-        <div className={styles.detailItem}>
-          <span className={styles.detailText}>Education System: {curriculum}</span>
-        </div>
-        
-        <div className={styles.actionRow}>
-          <Link to={`schools/${school.id}`}>
-            <button className={styles.viewButton}>View Details</button>
-          </Link>
-        </div>
+      </Link>
+
+      {/* Card Details */}
+      <div className={styles.cardContent}>
+        <p className={styles.cardText}>City: {location}</p>
+        <p className={styles.cardText}>Type: {type}</p>
+        <p className={styles.cardText}>Education System: {curriculum}</p>
       </div>
     </div>
   );
 };
+
 
 export default SchoolCard;

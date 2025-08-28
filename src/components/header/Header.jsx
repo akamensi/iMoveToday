@@ -43,6 +43,7 @@ const Header = () => {
     navigate("/login");
   };
 
+  
 const navItems = useMemo(() => [
   { label: "Schools", path: "/app/schools" },
   { label: "Properties", path: "/app/properties" },

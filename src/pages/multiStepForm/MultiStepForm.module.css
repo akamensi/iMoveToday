@@ -1,148 +1,203 @@
+/* Modal Backdrop for Blur Effect */
 .modalBackdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  backdrop-filter: blur(8px); /* Blur effect */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
+  z-index: 1001; /* Above the floating button */
+  opacity: 0; /* Start hidden for transition */
+  animation: fadeIn 0.3s forwards; /* Fade in animation */
 }
 
+/* Modal Content */
 .modalContent {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 600px;
+  background-color: #ffffff;
+  border-radius: 12px; /* Softer rounded corners */
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  max-width: 600px; /* Max width for the modal */
+  width: 90%; /* Responsive width */
   position: relative;
-  animation: slide-in 0.3s ease-out;
+  animation: slideIn 0.4s ease-out forwards; /* Slide in animation */
+  transform: translateY(-50px); /* Start slightly above center */
+  opacity: 0; /* Start hidden for animation */
 }
 
-@keyframes slide-in {
-  from {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.modalContent h3 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #343a40;
-  margin-bottom: 2rem;
-  text-align: center;
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Close Button */
+.closeModalButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.closeModalButton:hover {
+  color: #333;
+}
+
+/* Form Styling */
+.multiStepForm {
+  display: flex;
+  flex-direction: column;
 }
 
 .formStep {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 15px; /* Space between inputs */
+  transition: all 0.4s ease-in-out; /* For step transitions */
+}
+
+.formStep h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 .formStep input[type="text"],
-.formStep input[type="number"] {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #ced4da;
+.formStep input[type="number"],
+.formStep select {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width */
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.formStep input:focus {
+.formStep input[type="text"]:focus,
+.formStep input[type="number"]:focus,
+.formStep select:focus {
+  border-color: #007bff;
   outline: none;
-  border-color: #E41B23;
-  box-shadow: 0 0 0 3px rgba(228, 27, 35, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
 }
 
 .checkboxLabel {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1rem;
-  color: #495057;
+  gap: 10px;
+  font-size: 16px;
+  color: #555;
   cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff; /* Style checkbox color */
 }
 
 .buttonGroup {
-  margin-top: 1.5rem;
   display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.buttonGroup:has(.backButton) { /* If there's a back button, space between */
   justify-content: space-between;
-  gap: 1rem;
 }
 
 .formButton {
-  background: linear-gradient(135deg, #E41B23 0%, #c5171f 100%);
-  color: white;
+  padding: 12px 25px;
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 30px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(228, 27, 35, 0.3);
-  flex-grow: 1;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #007bff;
+  color: white;
 }
 
 .formButton:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(228, 27, 35, 0.4);
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.backButton {
-  background: #6c757d;
-  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.2);
+.formButton.backButton {
+  background-color: #6c757d; /* Grey for back button */
 }
 
-.backButton:hover {
-  background: #5a6268;
-  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.3);
+.formButton.backButton:hover {
+  background-color: #5a6268;
 }
 
-.addChildButton {
-  background: #00843D;
-  box-shadow: 0 4px 15px rgba(0, 132, 61, 0.2);
-  margin-bottom: 1rem;
+.formButton.addChildButton {
+  background-color: #28a745; /* Green for add child button */
+  align-self: flex-start; /* Align left */
+  margin-top: 10px;
 }
 
-.addChildButton:hover {
-  background: #007033;
-  box-shadow: 0 6px 20px rgba(0, 132, 61, 0.3);
-}
-
-.closeModalButton {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: transparent;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #6c757d;
-  transition: color 0.2s ease;
-}
-
-.closeModalButton:hover {
-  color: #343a40;
+.formButton.addChildButton:hover {
+  background-color: #218838;
 }
 
 .childForm {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  border: 1px solid #e9ecef;
+  border: 1px solid #eee;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 15px;
+  background-color: #f8f8f8;
+}
+
+.childForm h4 {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 10px;
+}
+
+.childForm input {
+  margin-bottom: 10px; /* Space between child inputs */
+}
+
+.infoMessage {
+  background-color: #e9f7ef;
+  color: #28a745;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.errorText {
+  color: #dc3545; /* Red for errors */
+  font-size: 14px;
+  margin-top: -10px; /* Pull it closer to the input */
+  margin-bottom: 10px;
+}
+
+.inputError {
+  border-color: #dc3545 !important; /* Red border for erroneous inputs */
 }
